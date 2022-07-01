@@ -3,11 +3,12 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { TextField } from '@mui/material';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from "react-router-dom";
 
 import Form from '../Form';
 import MainContainer from '../MainContainer';
 import PrimaryButton from '../inputs/PrimaryButton';
-import { TStap1 } from '../../../type/FormValidation';
+import { TStep1 } from '../../../type/FormValidation';
 
 const schema = yup.object().shape({
   firstName: yup
@@ -21,13 +22,15 @@ const schema = yup.object().shape({
 })
 
 function Satp1() {
-  const {register, handleSubmit, formState: {errors}} = useForm<TStap1>({
+  const navigate = useNavigate();
+  const {register, handleSubmit, formState: {errors}} = useForm<TStep1>({
     mode: 'onBlur',
     resolver: yupResolver(schema),
   })
 
-  const onSubmit: SubmitHandler<TStap1> = (data) =>{
+  const onSubmit: SubmitHandler<TStep1> = (data) =>{
     console.log(data)
+    navigate("/step2")
   }
   return (
     <div className="Satp1">
