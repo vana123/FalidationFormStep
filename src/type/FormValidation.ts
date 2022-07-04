@@ -5,4 +5,5 @@ export type TStep1 = {
 export type TStep2 = {
 	email: string;
 	phone?: string;
+	hasPhone: boolean;
 };

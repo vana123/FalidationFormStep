@@ -9,6 +9,8 @@ import Form from "../Form";
 import MainContainer from "../MainContainer";
 import PrimaryButton from "../inputs/PrimaryButton";
 import { TStep1 } from "../../../type/FormValidation";
+import { setStap1 } from "../../../store/reducers/form";
+import { useAppDispatch, useAppSelector } from "../../../hook/redux";
 
 const schema = yup.object().shape({
 	firstName: yup
@@ -23,6 +25,10 @@ const schema = yup.object().shape({
 
 function Satp1() {
 	const navigate = useNavigate();
+	const dispatch = useAppDispatch();
+	const { firstName, lastName } = useAppSelector(
+		(state) => state.formReducer
+	);
 	const {
 		register,
 		handleSubmit,
@@ -30,10 +36,15 @@ function Satp1() {
 	} = useForm<TStep1>({
 		mode: "onBlur",
 		resolver: yupResolver(schema),
+		defaultValues: {
+			firstName: firstName,
+			lastName: lastName,
+		},
 	});
 
 	const onSubmit: SubmitHandler<TStep1> = (data) => {
 		console.log(data);
+		dispatch(setStap1(data));
 		navigate("/step2");
 	};
 	return (
