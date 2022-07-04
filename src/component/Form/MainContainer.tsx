@@ -1,12 +1,12 @@
-import React from 'react';
-import { Container } from '@mui/material'
+import React from "react";
+import { Container } from "@mui/material";
 
-function MainContainer({ children, ...prop}: any) {
-  return (
-    <Container maxWidth='xs' {...prop} >
-        {children}
-    </Container>
-  );
+function MainContainer({ children, ...prop }: any) {
+	return (
+		<Container maxWidth="xs" {...prop}>
+			{children}
+		</Container>
+	);
 }
 
 export default MainContainer;
